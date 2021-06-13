@@ -1,6 +1,6 @@
 import React from 'react';
-import api from '../services/api.js';
-import {login} from '../services/auth.js';
+import api from '../../services/api.js';
+import {login} from '../../services/auth.js';
 
 class Login extends React.Component{
 
@@ -19,9 +19,11 @@ class Login extends React.Component{
 
         try{
 
-            const response = await api.get('/users/login', {username, password});
-            console.log(response);
-            //login()
+            const response = await api.post('/users/login', {username, password});
+            //console.log(response.data.jwt);
+            login(response.data.jwt);
+
+            this.props.history.push('/');
 
         }catch(err){
             console.log(err);

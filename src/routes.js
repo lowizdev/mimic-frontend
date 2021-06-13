@@ -9,7 +9,10 @@ import {
 
 import {isAuthenticated} from './services/auth.js';
 
-import Login from './pages/Login.js';
+import Login from './pages/User/Login.js';
+import ReadResourcePage from "./pages/Resource/ReadResourcePage.js";
+import ScanResourcePage from "./pages/Resource/ScanResourcePage.js";
+import ResourceDashboard from "./pages/Resource/ResourceDashboard.js";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
 
@@ -36,6 +39,9 @@ const Routes = () => {
     return(
         <Router>
             <Switch>
+                <Route exact path='/scan' component={ScanResourcePage}></Route>
+                <Route exact path='/resources/:id' component={ReadResourcePage}></Route>
+                <Route exact path='/resources/' component={ResourceDashboard}></Route>
                 <Route exact path='/login' component={Login}></Route>
             </Switch>
         </Router>
